@@ -4,7 +4,7 @@ from django.db import models
 class Food(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
-    price = models.CharField(max_length=100)
+    price = models.CharField(max_length=1000)
     stars = models.CharField(max_length=1)
     
     def __str__(self):
