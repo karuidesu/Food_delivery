@@ -10,3 +10,11 @@ class FoodAPIView(generics.ListAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
     template_name = 'food/index.html'
+    
+class ListFood(generics.ListAPIView):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer    
+    
+class DetailFood(generics.RetrieveAPIView):
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer   

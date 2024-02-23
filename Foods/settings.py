@@ -37,11 +37,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'rest_framework',
+    'corsheaders',
+    'whitenoise.runserver_nostatic', # added
+    
+    'accounts',
     'foodsMain',
     'apis',
-    'whitenoise.runserver_nostatic' # added
 ]
+
+REST_FRAMEWORK = { # added
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,8 +62,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware' # added
+    'whitenoise.middleware.WhiteNoiseMiddleware', # added
+    'corsheaders.middleware.CorsMiddleware'
 ]
+
+CORS_ALLOWED_ORIGINS = ( #added
+    "http://localhost:3000",
+    "http://localhost:8000",
+)
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000'] #added
 
 ROOT_URLCONF = 'Foods.urls'
 
@@ -104,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.CustomUser' #added
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
